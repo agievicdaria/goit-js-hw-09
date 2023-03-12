@@ -34,25 +34,25 @@ let delta = null;
 let intervalId = null;
 
 function onMakeCountdown() {
-    btnRef.disabled = true;
-    calculateTime();
-    intervalId = setInterval(() => calculateTime(), 1000);
+  btnRef.disabled = true;
+  calculateTime();
+  intervalId = setInterval(() => calculateTime(), 1000);
 }
 
 function calculateTime() {
-    delta = new Date(inputRef.value) - Date.now();
-  
-      if (delta > 0) {
-        const timeObject = convertMs(delta);
-  
-        daysRef.textContent = addLeadingZero(timeObject.days);
-        hoursRef.textContent = addLeadingZero(timeObject.hours);
-        minutesRef.textContent = addLeadingZero(timeObject.minutes);
-        secondsRef.textContent = addLeadingZero(timeObject.seconds);
-      } else {
-        clearInterval(intervalId);
-        Notify.success('time is up');
-      }
+  delta = new Date(inputRef.value) - Date.now();
+
+  if (delta > 0) {
+    const timeObject = convertMs(delta);
+
+    daysRef.textContent = addLeadingZero(timeObject.days);
+    hoursRef.textContent = addLeadingZero(timeObject.hours);
+    minutesRef.textContent = addLeadingZero(timeObject.minutes);
+    secondsRef.textContent = addLeadingZero(timeObject.seconds);
+  } else {
+    clearInterval(intervalId);
+    Notify.success('time is up');
+  }
 }
 
 function convertMs(ms) {
@@ -77,4 +77,3 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
-

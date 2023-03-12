@@ -13,7 +13,6 @@ function makePromiseElements(e) {
   let stepDelay = Number(stepRef.value);
 
   for (let index = 0; index < amountRef.value; index += 1) {
-
     createPromise(index + 1, firstDelay + index * stepDelay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -21,12 +20,11 @@ function makePromiseElements(e) {
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-
   }
 }
 
 function createPromise(position, delay) {
-  return promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
@@ -36,4 +34,5 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
+  return promise;
 }
